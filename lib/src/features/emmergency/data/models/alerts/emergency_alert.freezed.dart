@@ -21,6 +21,7 @@ EmergencyAlert _$EmergencyAlertFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$EmergencyAlert {
   String? get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   Location get location => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $EmergencyAlertCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
+      String title,
       List<String> images,
       Location location,
       String? description,
@@ -72,6 +74,7 @@ class _$EmergencyAlertCopyWithImpl<$Res, $Val extends EmergencyAlert>
   @override
   $Res call({
     Object? id = freezed,
+    Object? title = null,
     Object? images = null,
     Object? location = null,
     Object? description = freezed,
@@ -86,6 +89,10 @@ class _$EmergencyAlertCopyWithImpl<$Res, $Val extends EmergencyAlert>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -160,6 +167,7 @@ abstract class _$$EmergencyAlertImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
+      String title,
       List<String> images,
       Location location,
       String? description,
@@ -189,6 +197,7 @@ class __$$EmergencyAlertImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? title = null,
     Object? images = null,
     Object? location = null,
     Object? description = freezed,
@@ -203,6 +212,10 @@ class __$$EmergencyAlertImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -246,6 +259,7 @@ class _$EmergencyAlertImpl
     implements _EmergencyAlert {
   const _$EmergencyAlertImpl(
       {this.id,
+      required this.title,
       final List<String> images = const [],
       required this.location,
       this.description,
@@ -262,6 +276,8 @@ class _$EmergencyAlertImpl
 
   @override
   final String? id;
+  @override
+  final String title;
   final List<String> _images;
   @override
   @JsonKey()
@@ -295,7 +311,7 @@ class _$EmergencyAlertImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EmergencyAlert(id: $id, images: $images, location: $location, description: $description, supportService: $supportService, user: $user, responses: $responses, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'EmergencyAlert(id: $id, title: $title, images: $images, location: $location, description: $description, supportService: $supportService, user: $user, responses: $responses, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -304,6 +320,7 @@ class _$EmergencyAlertImpl
     properties
       ..add(DiagnosticsProperty('type', 'EmergencyAlert'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('images', images))
       ..add(DiagnosticsProperty('location', location))
       ..add(DiagnosticsProperty('description', description))
@@ -320,6 +337,7 @@ class _$EmergencyAlertImpl
         (other.runtimeType == runtimeType &&
             other is _$EmergencyAlertImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.location, location) ||
                 other.location == location) &&
@@ -341,6 +359,7 @@ class _$EmergencyAlertImpl
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      title,
       const DeepCollectionEquality().hash(_images),
       location,
       description,
@@ -368,6 +387,7 @@ class _$EmergencyAlertImpl
 abstract class _EmergencyAlert implements EmergencyAlert {
   const factory _EmergencyAlert(
       {final String? id,
+      required final String title,
       final List<String> images,
       required final Location location,
       final String? description,
@@ -382,6 +402,8 @@ abstract class _EmergencyAlert implements EmergencyAlert {
 
   @override
   String? get id;
+  @override
+  String get title;
   @override
   List<String> get images;
   @override

@@ -13,6 +13,7 @@ part 'emergency_alert.g.dart';
 class EmergencyAlert with _$EmergencyAlert {
   const factory EmergencyAlert({
     String? id,
+    required String title,
     @Default([]) List<String> images,
     required Location location,
     String? description,
