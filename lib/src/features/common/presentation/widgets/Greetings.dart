@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:i_gatchu/src/app/navigation/menu/MenuItemsBuilder.dart';
-import 'package:i_gatchu/src/app/navigation/menu/MenuOption.dart';
-import 'package:i_gatchu/src/app/navigation/menu/menuItems.dart';
-import 'package:i_gatchu/src/features/common/data/providers/shortcut_provider.dart';
-import 'package:i_gatchu/src/features/user_programs/data/providers/program_provider.dart';
 import 'package:i_gatchu/src/shared/display/AppCard.dart';
 import 'package:i_gatchu/src/utils/constants.dart';
 
@@ -64,50 +57,79 @@ class Greetings extends StatelessWidget {
                       width: double.infinity,
                       height: double.infinity,
                       child: Center(
-                        child: Consumer(
-                          builder: (context, ref, child) {
-                            final shortcuts = ref.watch(shortcutProvider);
-                            return MenuItemsBuilder(
-                              itemBuilder: (item) => MenuOption(
-                                title: item.title ?? "",
-                                icon: item.icon,
-                                bgColor: item.title == "Edit Shortcut"
-                                    ? theme.colorScheme.secondary
-                                    : null,
-                                onPress: item.onPressed,
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          alignment: WrapAlignment.center,
+                          children: [
+                            AppCard(
+                              child: Padding(
+                                padding: const EdgeInsets.all(Constants.SPACING),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/report-incidence.png",
+                                      width: 80,
+                                      height: 80,
+                                    ),
+                                    const Text("Report Incidence"),
+                                  ],
+                                ),
                               ),
-                              items: getMenuItemByNames(context, shortcuts)
-                                ..add(
-                                  MenuItem(
-                                    icon: Icons.edit_note_sharp,
-                                    title: "Edit Shortcut",
-                                    onPressed: () => _showDialog(context),
+                              onTap: () {},
+                            ),
+                            AppCard(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.all(Constants.SPACING),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/emergency-call.png",
+                                      width: 80,
+                                      height: 80,
+                                    ),
+                                    const Text("Emergency Call"),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {},
+                            ), AppCard(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.all(Constants.SPACING),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/incidents-report.png",
+                                      width: 80,
+                                      height: 80,
+                                    ),
+                                    const Text("Emergency alerts"),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {},
+                            ), AppCard(
+                              child: SizedBox(
+                                width: double.maxFinite,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.all(Constants.SPACING),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/psychological-help.png",
+                                        width: 80,
+                                        height: 80,
+                                      ),
+                                      const Text("Psycho social support"),
+                                    ],
                                   ),
                                 ),
-                            );
-
-                            return Wrap(
-                              alignment: WrapAlignment.spaceBetween,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              spacing: Constants.SPACING,
-                              runSpacing: Constants.SPACING,
-                              children: [
-                                ...getMenuItemByNames(context, shortcuts)
-                                    .map((e) => MenuOption(
-                                          title: e.title ?? "",
-                                          icon: e.icon,
-                                          onPress: e.onPressed,
-                                        )),
-                                MenuOption(
-                                  icon: Icons.add,
-                                  title: "Add Shortcut",
-                                  onPress: () {
-                                    _showDialog(context);
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                              ),
+                              onTap: () {},
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -120,75 +142,4 @@ class Greetings extends StatelessWidget {
       ),
     );
   }
-}
-
-_showDialog(BuildContext context) {
-  final theme = Theme.of(context);
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) => AlertDialog(
-      icon: const Icon(Icons.construction),
-      title: Text(
-        "Select Shortcut MenuOptions",
-        style: theme.textTheme.titleMedium,
-      ),
-      content: SizedBox(
-        width: double.maxFinite,
-        height: MediaQuery.of(context).size.height * 0.5,
-        child: Consumer(
-          builder: (context, ref, child) {
-            final userProgram = ref.watch(programProvider);
-            final shortcuts = ref.watch(shortcutProvider);
-            final shortcutsNotifier = ref.watch(shortcutProvider.notifier);
-            return userProgram.when(
-              data: (data) => MenuItemsBuilder(
-                itemBuilder: (item) => MenuOption(
-                  title: item.title ?? "",
-                  icon: item.icon,
-                  onPress: () {
-                    if (shortcuts.any((element) => element == item.title)) {
-                      // Delete shortcut
-                      shortcutsNotifier.deleteShortcut(
-                        item.title ?? "",
-                      );
-                    } else {
-                      // Add shortcut
-                      if (shortcuts.length >= shortcutsNotifier.maxShortcuts) {
-                        context.pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                    Text("Max number of shortcuts reached")));
-                      } else {
-                        shortcutsNotifier.addShortcut(
-                          item.title ?? "",
-                        );
-                      }
-                    }
-                  },
-                  bgColor: shortcuts.any((element) => element == item.title)
-                      ? theme.colorScheme.secondary
-                      : null,
-                ),
-                items: [
-                  // get generic menu items
-                  ...getGenericMenuItems(context),
-                  // get program menu items
-                  ...data.map((e) {
-                    final programCode = e.program.programCode;
-                    return getProgramMenuItemByProgramCode(
-                        context, programCode);
-                  }).toList(),
-                ],
-              ),
-              error: (error, _) => Center(child: Text(error.toString())),
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          },
-        ),
-      ),
-    ),
-  );
 }

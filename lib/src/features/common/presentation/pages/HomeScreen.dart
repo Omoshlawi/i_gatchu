@@ -5,12 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:i_gatchu/src/app/navigation/drawer/UserDrawerHeader.dart';
 import 'package:i_gatchu/src/features/auth/data/providers/auth_provider.dart';
 import 'package:i_gatchu/src/features/common/presentation/widgets/Announcements.dart';
-import 'package:i_gatchu/src/features/common/presentation/widgets/Greetings.dart';
 import 'package:i_gatchu/src/features/user/data/providers/user_provider.dart';
 import 'package:i_gatchu/src/shared/extensions/extensions.dart';
 import 'package:i_gatchu/src/utils/constants.dart';
 import 'package:i_gatchu/src/utils/routes.dart';
 
+import '../widgets/Greetings.dart';
 import '../widgets/SupportServices.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -78,7 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               leading: const Icon(Icons.dashboard_customize_rounded),
               title: const Text("Dashboard"),
               onTap: () {
-                context.goNamed(RouteNames.DASHBOARD);
+                context.goNamed(RouteNames.VIEW_INCIDENTS);
                 // Close drawer
                 Navigator.pop(context);
               },

@@ -165,3 +165,12 @@ final List<RouteBase> openRoutes = [
     builder: (context, state) => const ResetPasswordScreen(),
   ),
 ];
+final List<RouteBase> emegencyRoutes = [
+  GoRoute(
+    name: RouteNames.LOGIN_SCREEN,
+    path: 'login',
+    builder: (BuildContext context, GoRouterState state) {
+      return const LoginScreen();
+    },
+  ),
+];
