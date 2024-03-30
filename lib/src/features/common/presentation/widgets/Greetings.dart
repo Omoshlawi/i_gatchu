@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:i_gatchu/src/shared/display/AppCard.dart';
 import 'package:i_gatchu/src/utils/constants.dart';
+import 'package:i_gatchu/src/utils/routes.dart';
 
 class Greetings extends StatelessWidget {
   final String? image;
@@ -63,7 +65,8 @@ class Greetings extends StatelessWidget {
                           children: [
                             AppCard(
                               child: Padding(
-                                padding: const EdgeInsets.all(Constants.SPACING),
+                                padding:
+                                    const EdgeInsets.all(Constants.SPACING),
                                 child: Column(
                                   children: [
                                     Image.asset(
@@ -75,7 +78,9 @@ class Greetings extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                context.goNamed(RouteNames.REPORT_EMERGENCY_INCIDENT);
+                              },
                             ),
                             AppCard(
                               child: Padding(
@@ -93,7 +98,8 @@ class Greetings extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {},
-                            ), AppCard(
+                            ),
+                            AppCard(
                               child: Padding(
                                 padding:
                                     const EdgeInsets.all(Constants.SPACING),
@@ -108,8 +114,12 @@ class Greetings extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
-                            ), AppCard(
+                              onTap: () {
+                                context.goNamed(RouteNames.VIEW_INCIDENTS);
+
+                              },
+                            ),
+                            AppCard(
                               child: SizedBox(
                                 width: double.maxFinite,
                                 child: Padding(
@@ -127,7 +137,10 @@ class Greetings extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                context.goNamed(RouteNames.PSYCHOSOCIAL_SUPPORT);
+
+                              },
                             ),
                           ],
                         ),

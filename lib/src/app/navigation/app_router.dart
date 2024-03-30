@@ -13,6 +13,9 @@ import 'package:i_gatchu/src/features/auth/presentation/pages/SplashScreen.dart'
 import 'package:i_gatchu/src/features/auth/presentation/pages/VerificationScreen.dart';
 import 'package:i_gatchu/src/features/auth/presentation/pages/WelcomeScreen.dart';
 import 'package:i_gatchu/src/features/common/presentation/pages/MainScreen.dart';
+import 'package:i_gatchu/src/features/emmergency/presentations/pages/EmergencyAlerts.dart';
+import 'package:i_gatchu/src/features/emmergency/presentations/pages/PsychosocialSupport.dart';
+import 'package:i_gatchu/src/features/emmergency/presentations/pages/ReportEmmegencyIncident.dart';
 import 'package:i_gatchu/src/features/user/presentation/pages/ProfileScreen.dart';
 import 'package:i_gatchu/src/features/user/presentation/pages/ProfileWizardFormScreen.dart';
 import 'package:i_gatchu/src/features/user_preference/presentation/pages/PinAuthScreen.dart';
@@ -142,6 +145,13 @@ final List<RouteBase> secureRoutes = [
     builder: (BuildContext context, GoRouterState state) {
       return const ProfileScreen();
     },
+  ),GoRoute(
+    name: RouteNames.VIEW_INCIDENTS,
+    path: 'emergencies',
+    builder: (BuildContext context, GoRouterState state) {
+      return const EmergencyAlerts();
+    },
+    routes: emergencyRoutes
   ),
 ];
 final List<RouteBase> openRoutes = [
@@ -165,12 +175,19 @@ final List<RouteBase> openRoutes = [
     builder: (context, state) => const ResetPasswordScreen(),
   ),
 ];
-final List<RouteBase> emegencyRoutes = [
+final List<RouteBase> emergencyRoutes = [
   GoRoute(
-    name: RouteNames.LOGIN_SCREEN,
-    path: 'login',
+    name: RouteNames.PSYCHOSOCIAL_SUPPORT,
+    path: 'psychosocial-support',
     builder: (BuildContext context, GoRouterState state) {
-      return const LoginScreen();
+      return const PsychosocialSupport();
+    },
+  ),
+  GoRoute(
+    name: RouteNames.REPORT_EMERGENCY_INCIDENT,
+    path: 'report-emergency-incident',
+    builder: (BuildContext context, GoRouterState state) {
+      return const ReportEmergencyIncident();
     },
   ),
 ];

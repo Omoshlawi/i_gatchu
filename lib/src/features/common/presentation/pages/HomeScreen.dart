@@ -76,7 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             ListTile(
               leading: const Icon(Icons.dashboard_customize_rounded),
-              title: const Text("Dashboard"),
+              title: const Text("Emergency Incidents"),
               onTap: () {
                 context.goNamed(RouteNames.VIEW_INCIDENTS);
                 // Close drawer
