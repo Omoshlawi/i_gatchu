@@ -21,4 +21,6 @@ class EmergencyAlertController
       rethrow;
     }
   }
+
+  addEmergencyAlert(Map<String, dynamic> value) {}
 }
