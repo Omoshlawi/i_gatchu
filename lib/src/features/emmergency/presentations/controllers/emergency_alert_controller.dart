@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i_gatchu/src/features/emmergency/data/models/alerts/emergency_alert.dart';
 import 'package:i_gatchu/src/features/emmergency/data/repositories/emergency_alert_repository.dart';
@@ -22,5 +23,14 @@ class EmergencyAlertController
     }
   }
 
-  addEmergencyAlert(Map<String, dynamic> value) {}
+  Future<EmergencyAlert> addEmergencyAlert(Map<String, dynamic> value)async {
+    try{
+      final alert = await _repository.addEmergencyAlert(value);
+      await getEmergencyAlerts();
+      return alert;
+    }catch(e){
+      rethrow;
+    }
+
+  }
 }
