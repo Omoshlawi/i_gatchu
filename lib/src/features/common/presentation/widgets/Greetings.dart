@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i_gatchu/src/shared/display/AppCard.dart';
+import 'package:i_gatchu/src/shared/input/Button.dart';
 import 'package:i_gatchu/src/utils/constants.dart';
+import 'package:i_gatchu/src/utils/helpers.dart';
 import 'package:i_gatchu/src/utils/routes.dart';
 
 class Greetings extends StatelessWidget {
@@ -79,7 +81,8 @@ class Greetings extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                context.goNamed(RouteNames.REPORT_EMERGENCY_INCIDENT);
+                                context.goNamed(
+                                    RouteNames.REPORT_EMERGENCY_INCIDENT);
                               },
                             ),
                             AppCard(
@@ -97,7 +100,35 @@ class Greetings extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () async {
+                                final line = await showDialog<String>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text("Choose emergency line"),
+                                    content: Wrap(
+                                        children: [
+                                      ListTile(
+                                        subtitle: const Text("Police Line"),
+                                        title: const Text("999"),
+                                        leading: const Icon(Icons.call),
+                                        onTap: () {
+                                          context.pop("999");
+                                        },
+                                      ),
+                                      ListTile(
+                                        subtitle:
+                                            const Text("Other emergency lines"),
+                                        title: const Text("112"),
+                                        leading: const Icon(Icons.call),
+                                        onTap: () {
+                                          context.pop("112");
+                                        },
+                                      ),
+                                    ]),
+                                  ),
+                                );
+                                if (line != null) makePhoneCall("999");
+                              },
                             ),
                             AppCard(
                               child: Padding(
@@ -116,7 +147,6 @@ class Greetings extends StatelessWidget {
                               ),
                               onTap: () {
                                 context.goNamed(RouteNames.VIEW_INCIDENTS);
-
                               },
                             ),
                             AppCard(
@@ -138,8 +168,8 @@ class Greetings extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                context.goNamed(RouteNames.PSYCHOSOCIAL_SUPPORT);
-
+                                context
+                                    .goNamed(RouteNames.PSYCHOSOCIAL_SUPPORT);
                               },
                             ),
                           ],

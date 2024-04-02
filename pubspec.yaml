@@ -61,6 +61,7 @@ dependencies:
   flutter_web_auth_2: ^3.1.1
   dropdown_search: ^5.0.6
   flutter_expandable_fab: ^2.0.0
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:

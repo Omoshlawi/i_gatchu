@@ -34,11 +34,6 @@ class SupportServices extends HookConsumerWidget {
               enlargeFactor: 0.3,
             ),
             items: data
-                .where((artAppointment) => // Filter only upcoming appointments
-                    DateTime.parse(artAppointment.createdAt)
-                        .difference(DateTime.now())
-                        .inDays >=
-                    0)
                 .map(
               (supportService) {
                 return Builder(
