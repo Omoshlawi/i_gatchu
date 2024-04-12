@@ -10,9 +10,6 @@ import 'package:i_gatchu/src/features/auth/data/providers/auth_provider.dart';
 import 'package:i_gatchu/src/features/emmergency/data/providers/emergency_alertprovider.dart';
 import 'package:i_gatchu/src/features/emmergency/data/providers/support_service_provider.dart';
 import 'package:i_gatchu/src/features/emmergency/presentations/widgets/LocationPicker.dart';
-import 'package:i_gatchu/src/shared/input/ImagePicker.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../shared/input/Button.dart';
 import '../../../../shared/styles/input_styles.dart';
